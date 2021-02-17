@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: ${VENDA_DATASOURCE_URL}
+    username: ${VENDA_DATASOURCE_USER}
+    password: ${VENDA_DATASOURCE_PASSWORD}
+

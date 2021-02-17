@@ -1,4 +1,4 @@
-package com.markswll.venda;
+package com.markswell.venda;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

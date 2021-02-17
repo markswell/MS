@@ -1,0 +1,14 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /venda
+
+spring:
+  application:
+    name: venda
+  jpa:
+    show-sql: false
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  jmx:
+    enabled: false
