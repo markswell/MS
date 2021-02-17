@@ -32,9 +32,11 @@ build/
 ### VS Code ###
 .vscode/
 
-!**/.idea
-!**/*.iws
-!**/*.iml
-!**/*.ipr
-!**/gitignore
+**/.idea
+**/*.iws
+**/*.iml
+**/*.ipr
+**/.gitignore
+**/.mvn/wrapper/MavenWrapperDownloader.java
+.mvn
 
