@@ -1,4 +1,4 @@
-package com.markswll.cadastro.entity;
+package com.markswell.cadastro.entity;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.markswll.cadastro.converter;
+package com.markswell.cadastro.converter;
 
-import com.markswll.cadastro.domain.ProdutoVO;
-import com.markswll.cadastro.entity.Produto;
+import com.markswell.cadastro.domain.ProdutoVO;
+import com.markswell.cadastro.entity.Produto;
 import org.modelmapper.ModelMapper;
 
 public class ProdutoConverter {

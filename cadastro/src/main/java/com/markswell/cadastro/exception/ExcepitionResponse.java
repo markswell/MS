@@ -1,4 +1,4 @@
-package com.markswll.cadastro.exception;
+package com.markswell.cadastro.exception;
 
 import lombok.Data;
 import java.util.Date;

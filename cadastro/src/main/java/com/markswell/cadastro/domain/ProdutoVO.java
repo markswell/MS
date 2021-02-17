@@ -1,4 +1,4 @@
-package com.markswll.cadastro.domain;
+package com.markswell.cadastro.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

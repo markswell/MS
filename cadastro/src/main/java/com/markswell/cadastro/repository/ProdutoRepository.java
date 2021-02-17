@@ -1,6 +1,6 @@
-package com.markswll.cadastro.repository;
+package com.markswell.cadastro.repository;
 
-import com.markswll.cadastro.entity.Produto;
+import com.markswell.cadastro.entity.Produto;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 

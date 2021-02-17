@@ -1,12 +1,12 @@
-package com.markswll.cadastro.resource;
+package com.markswell.cadastro.resource;
 
 import org.springframework.hateoas.PagedModel;
-import com.markswll.cadastro.domain.ProdutoVO;
+import com.markswell.cadastro.domain.ProdutoVO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.PageRequest;
-import com.markswll.cadastro.service.ProdutoService;
+import com.markswell.cadastro.service.ProdutoService;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 

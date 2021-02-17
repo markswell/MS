@@ -1,15 +1,15 @@
-package com.markswll.cadastro.service;
+package com.markswell.cadastro.service;
 
 
+import com.markswell.cadastro.converter.ProdutoConverter;
+import com.markswell.cadastro.exception.ResourceNotFoundExecption;
+import com.markswell.cadastro.repository.ProdutoRepository;
 import org.springframework.data.domain.Page;
-import com.markswll.cadastro.domain.ProdutoVO;
+import com.markswell.cadastro.domain.ProdutoVO;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
-import com.markswll.cadastro.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.markswll.cadastro.exception.ResourceNotFoundExecption;
-import static com.markswll.cadastro.converter.ProdutoConverter.produtoParse;
-import static com.markswll.cadastro.converter.ProdutoConverter.produtoVOParse;
+
 import static java.lang.String.format;
 
 @Service
@@ -19,17 +19,17 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public ProdutoVO create(ProdutoVO produtoVO) {
-        return produtoVOParse(produtoRepository.save(produtoParse(produtoVO)));
+        return ProdutoConverter.produtoVOParse(produtoRepository.save(ProdutoConverter.produtoParse(produtoVO)));
     }
 
     public Page<ProdutoVO> findAll(Pageable pageable) {
-        return produtoRepository.findAll(pageable).map(m -> produtoVOParse(m));
+        return produtoRepository.findAll(pageable).map(m -> ProdutoConverter.produtoVOParse(m));
     }
 
     public ProdutoVO findById(Long id) {
         var retorno = produtoRepository.findById(id)
                                             .orElseThrow(() -> getResourceNotFoundExecption(id));
-        return produtoVOParse(retorno);
+        return ProdutoConverter.produtoVOParse(retorno);
     }
 
     private ResourceNotFoundExecption getResourceNotFoundExecption(Long id) {

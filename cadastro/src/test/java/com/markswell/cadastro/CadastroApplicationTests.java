@@ -1,4 +1,4 @@
-package com.markswll.cadastro;
+package com.markswell.cadastro;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
