@@ -7,3 +7,8 @@ spring:
     username: ${VENDA_DATASOURCE_USER}
     password: ${VENDA_DATASOURCE_PASSWORD}
 
+eureka:
+  client:
+    service-url:
+      defaultZone: ${REGISTER_SERVER_URL}
+

@@ -1,0 +1,9 @@
+server:
+  port: 8761
+  servlet:
+    context-path: /registry
+
+spring:
+  application:
+    name: registry
+
