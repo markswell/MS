@@ -3,6 +3,7 @@ package com.markswell.cadastro.service;
 
 import com.markswell.cadastro.converter.ProdutoConverter;
 import com.markswell.cadastro.exception.ResourceNotFoundExecption;
+import com.markswell.cadastro.message.ProdutoSendMessage;
 import com.markswell.cadastro.repository.ProdutoRepository;
 import org.springframework.data.domain.Page;
 import com.markswell.cadastro.domain.ProdutoVO;
@@ -18,8 +19,14 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private ProdutoSendMessage produtoSendMessage;
+
     public ProdutoVO create(ProdutoVO produtoVO) {
-        return ProdutoConverter.produtoVOParse(produtoRepository.save(ProdutoConverter.produtoParse(produtoVO)));
+        ProdutoVO retorno = ProdutoConverter.produtoVOParse(produtoRepository.save(ProdutoConverter.produtoParse(produtoVO)));
+        produtoSendMessage.send(retorno);
+        return retorno;
+
     }
 
     public Page<ProdutoVO> findAll(Pageable pageable) {

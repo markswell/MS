@@ -12,3 +12,8 @@ spring:
       dialect: org.hibernate.dialect.PostgreSQLDialect
   jmx:
     enabled: false
+
+venda:
+  rabbitmq:
+    exchage: cadastro.exchange
+    queue: cadastro.produto.queue

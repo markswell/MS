@@ -6,6 +6,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/venda
     username: admin
     password: admin
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
 
 eureka:
   client:

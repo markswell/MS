@@ -6,7 +6,11 @@ spring:
     url: ${CADASTRO_DATASOURCE_URL}
     username: ${CADASTRO_DATASOURCE_USER}
     password: ${CADASTRO_DATASOURCE_PASSWORD}
-
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_PASSWORD}
 
 eureka:
   client:
