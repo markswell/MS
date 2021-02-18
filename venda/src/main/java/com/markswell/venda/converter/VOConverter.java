@@ -6,11 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class VOConverter<V, C> {
 
-    public C entityParse(V t, C c) {
-        return (C) new ModelMapper().map(t, c.getClass());
+    public C entityParse(V t, Class<C> c) {
+        return new ModelMapper().map(t, c);
     }
 
-    public  V voParse(C c, V v) {
-        return (V) new ModelMapper().map(c, v.getClass());
+    public  V voParse(C c, Class<V> v) {
+        return new ModelMapper().map(c, v);
     }
+
 }
