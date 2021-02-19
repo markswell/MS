@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: ${CADASTRO_DATASOURCE_URL}
+    username: ${CADASTRO_DATASOURCE_USER}
+    password: ${CADASTRO_DATASOURCE_PASSWORD}

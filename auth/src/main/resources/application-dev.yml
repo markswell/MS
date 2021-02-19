@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth
+    username: admin
+    password: admin
+
+security:
+  jwt:
+    token:
+      secret-key: chave_super_secreta
+      expire-length: 3600
