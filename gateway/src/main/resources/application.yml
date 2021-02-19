@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+
+zuul:
+  prefix: /api
+  ignored-services: "*"
+
+  routes:
+    crud:
+      path: /venda/**
+      service-id: venda
+      strip-prefix: false
+      custom-sensitive-headers: true
+
+    pagamento:
+      path: /cadastro/**
+      service-id: cadastro
+      strip-prefix: false
+      custom-sensitive-headers: true

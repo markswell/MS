@@ -13,6 +13,8 @@ spring:
     password: ${RABBITMQ_PASSWORD}
 
 eureka:
+  instance:
+    hostname: ${EUREKA_SERVER}
   client:
     registerWithEureka: true
     fetchRegistry: true

@@ -13,6 +13,8 @@ spring:
     password: admin
 
 eureka:
+  instance:
+    hostname: localhost
   client:
     registerWithEureka: true
     fetchRegistry: true
