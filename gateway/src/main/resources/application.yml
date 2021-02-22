@@ -11,13 +11,13 @@ zuul:
 
   routes:
     crud:
-      path: /venda/**
-      service-id: venda
+      path: /cadastro/**
+      service-id: cadastro
       strip-prefix: false
       custom-sensitive-headers: true
 
     pagamento:
-      path: /cadastro/**
-      service-id: cadastro
+      path: /venda/**
+      service-id: venda
       strip-prefix: false
       custom-sensitive-headers: true
