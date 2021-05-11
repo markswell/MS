@@ -1,6 +1,5 @@
 package com.markswell.auth.service;
 
-import com.markswell.auth.entity.User;
 import com.markswell.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,12 +19,12 @@ public class UserService implements UserDetailsService, Serializable {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        var user = userRepository.findByUserName(s);
+    public UserDetails loadUserByUsername(String userName ) throws UsernameNotFoundException {
+        var user = userRepository.findByUserName(userName);
         if(user != null) {
             return user;
         } else {
-            throw new UsernameNotFoundException(format("Usuário %s não foi encontrado.", s));
+            throw new UsernameNotFoundException(format("Usuário %userName não foi encontrado.", userName));
         }
     }
 }

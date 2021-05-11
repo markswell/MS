@@ -6,3 +6,8 @@ spring:
     url: ${CADASTRO_DATASOURCE_URL}
     username: ${CADASTRO_DATASOURCE_USER}
     password: ${CADASTRO_DATASOURCE_PASSWORD}
+
+security:
+  jwt:
+    token:
+      secret-key: ${CAHVE_SECRETA_AUTH}

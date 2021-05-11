@@ -10,5 +10,5 @@ spring:
 security:
   jwt:
     token:
-      secret-key: chave_super_secreta
+      secret-key: chave_secreta
       expire-length: 3600

@@ -14,10 +14,10 @@ import static javax.persistence.FetchType.EAGER;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements UserDetails, Serializable {
 
-    private static final long serialVersionUID = -3964988839667312577L;
+    private static final long serialVersionUID = -2552038424683632376L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,11 +41,11 @@ public class User implements UserDetails, Serializable {
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @ManyToMany(fetch = EAGER)
+    @ManyToMany(fetch = EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_permission",
-                joinColumns = {@JoinColumn(name = "user_id")},
-                inverseJoinColumns = {@JoinColumn(name = "permission_id")})
-    private List<Permissions> permissions;
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "permission_id")})
+    private List<Permission> permissions;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -54,8 +54,8 @@ public class User implements UserDetails, Serializable {
 
     public List<String> getRoles() {
         return getPermissions().stream()
-                                .map(p -> p.getDescription())
-                                .collect(Collectors.toList());
+                .map(p -> p.getDescription())
+                .collect(Collectors.toList());
     }
 
     @Override

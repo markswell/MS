@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "permissions")
-public class Permissions implements GrantedAuthority, Serializable {
+public class Permission implements GrantedAuthority, Serializable {
 
     private static final long serialVersionUID = 6127531798267373826L;
 
