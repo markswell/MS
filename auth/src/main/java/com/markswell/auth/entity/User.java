@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 import static javax.persistence.FetchType.EAGER;
 
-@Data
 @Entity
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
@@ -47,6 +46,66 @@ public class User implements UserDetails, Serializable {
             inverseJoinColumns = {@JoinColumn(name = "permission_id")})
     private List<Permission> permissions;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public Boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getPermissions();
@@ -60,12 +119,12 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public String getPassword() {
-        return getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return getUsername();
+        return this.userName;
     }
 
     @Override

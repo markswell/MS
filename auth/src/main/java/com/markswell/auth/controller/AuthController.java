@@ -38,7 +38,6 @@ public class AuthController {
     }
 
     @PostMapping(consumes = { "application/json" }, produces = { "application/json" })
-    @RequestMapping("auth")
     public ResponseEntity<?> login(@RequestBody UserVO userVO) {
         try {
             authenticationManager.authenticate(getAuthentication(userVO));
@@ -56,6 +55,7 @@ public class AuthController {
             hashMap.put("token", token);
             return ok(hashMap);
         } catch(AuthenticationException e) {
+            e.printStackTrace();
             throw new BadCredentialsException("Usuário ou senha inválido.");
         }
     }

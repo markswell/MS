@@ -20,42 +20,4 @@ public class AuthApplication {
 		SpringApplication.run(AuthApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner init(UserRepository userRepository, PermissionRepository permissionRepository,
-						   BCryptPasswordEncoder passwordEncoder) {
-		return args -> {
-			initUsers(userRepository, permissionRepository, passwordEncoder);
-		};
-
-	}
-
-	@Transactional
-	void initUsers(UserRepository userRepository, PermissionRepository permissionRepository,
-				   BCryptPasswordEncoder passwordEncoder) {
-
-		Permission permission = null;
-		Permission findPermission = permissionRepository.findByDescription("Admin");
-		if (findPermission == null) {
-			permission = new Permission();
-			permission.setDescription("Admin");
-			permission = permissionRepository.saveAndFlush(permission);
-		} else {
-			permission = findPermission;
-		}
-
-		User admin = new User();
-		admin.setUserName("markswell");
-		admin.setAccountNonExpired(true);
-		admin.setAccountNonLocked(true);
-		admin.setCredentialsNonExpired(true);
-		admin.setEnabled(true);
-		admin.setPassword(passwordEncoder.encode("123456"));
-		admin.setPermissions(permissionRepository.findAll());
-
-		User find = userRepository.findByUserName("markswell");
-		if (find == null) {
-			userRepository.save(admin);
-		}
-	}
-
 }

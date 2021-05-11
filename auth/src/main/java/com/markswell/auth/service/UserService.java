@@ -24,7 +24,7 @@ public class UserService implements UserDetailsService, Serializable {
         if(user != null) {
             return user;
         } else {
-            throw new UsernameNotFoundException(format("Usuário %userName não foi encontrado.", userName));
+            throw new UsernameNotFoundException(format("Usuário %s não foi encontrado.", userName));
         }
     }
 }
