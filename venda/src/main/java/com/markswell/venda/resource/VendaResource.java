@@ -38,7 +38,7 @@ public class VendaResource {
                                      @RequestParam(value = "limit", defaultValue = "10") int limit,
                                      @RequestParam(value = "direction", defaultValue = "asc") String direction) {
         var order = direction.equals("desc") ? DESC : ASC;
-        var pageable = PageRequest.of(page, limit, by(order, "nome"));
+        var pageable = PageRequest.of(page, limit, by(order, "id"));
         var vendaVOS = vendaService.findAll(pageable).map(p -> p.add(linkTo(getProdutoResource().find(p.getId())).withSelfRel()));
         PagedModel<EntityModel<VendaVO>> pageModel = assembler.toModel(vendaVOS);
         return ResponseEntity.ok(pageModel);
