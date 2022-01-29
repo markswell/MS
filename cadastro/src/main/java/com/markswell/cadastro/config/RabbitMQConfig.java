@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("cadastro.rabbitmq")
 public class RabbitMQConfig {
 
-    private String exchage;
+    private String exchenge;
     private String routingkey;
+    private String deadLetter;
 
 }

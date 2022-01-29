@@ -11,6 +11,12 @@ spring:
     port: ${RABBITMQ_PORT}
     username: ${RABBITMQ_USER}
     password: ${RABBITMQ_PASSWORD}
+    exchenge:
+      producer: ${RABBITMQ_EXCHENGE}
+    routing-key:
+      producer: ${RABBITMQ_QUEUE}
+    dead-letter:
+      producer: ${RABBITMQ_DEADLETTER}
 
 eureka:
   instance:
@@ -20,3 +26,9 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: ${REGISTER_SERVER_URL}
+
+cadastro:
+  rabbitmq:
+    exchenge: ${RABBITMQ_EXCHENGE}
+    routingkey: ${RABBITMQ_QUEUE}
+    deadLetter: ${RABBITMQ_DEADLETTER}

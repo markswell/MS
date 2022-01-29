@@ -15,7 +15,7 @@ public class ProdutoSendMessage {
     private RabbitTemplate rabbitTemplate;
 
     public void send(ProdutoVO produtoVO) {
-        rabbitTemplate.convertAndSend(config.getExchage(), config.getRoutingkey(), produtoVO);
+        rabbitTemplate.convertAndSend(config.getExchenge(), config.getRoutingkey(), produtoVO);
 
     }
 }

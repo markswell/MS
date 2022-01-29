@@ -11,6 +11,12 @@ spring:
     port: 5672
     username: admin
     password: admin
+    exchenge:
+      producer:  ex.cadastro
+    routing-key:
+      producer: rk.cadastro
+    dead-letter:
+      producer: dl.cadastro
 
 eureka:
   instance:
@@ -20,3 +26,9 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: http://localhost:8761/registry/eureka
+
+cadastro:
+  rabbitmq:
+    exchenge: ex.cadastro
+    routingkey: rk.cadastro
+    deadLetter: dl.cadastro

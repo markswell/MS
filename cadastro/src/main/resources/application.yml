@@ -13,8 +13,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   jmx:
     enabled: false
-
-cadastro:
-  rabbitmq:
-    exchage: cadastro.exchange
-    routingkey: cadastro.produto.routingkey
