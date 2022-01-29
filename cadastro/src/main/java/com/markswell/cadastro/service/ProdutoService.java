@@ -3,7 +3,7 @@ package com.markswell.cadastro.service;
 
 import com.markswell.cadastro.converter.ProdutoConverter;
 import com.markswell.cadastro.exception.ResourceNotFoundExecption;
-import com.markswell.cadastro.message.ProdutoSendMessage;
+import com.markswell.cadastro.message.RabbitMQProdutoSendMessage;
 import com.markswell.cadastro.repository.ProdutoRepository;
 import org.springframework.data.domain.Page;
 import com.markswell.cadastro.domain.ProdutoVO;
@@ -20,11 +20,11 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     @Autowired
-    private ProdutoSendMessage produtoSendMessage;
+    private RabbitMQProdutoSendMessage rabbitMQProdutoSendMessage;
 
     public ProdutoVO create(ProdutoVO produtoVO) {
         ProdutoVO retorno = ProdutoConverter.produtoVOParse(produtoRepository.save(ProdutoConverter.produtoParse(produtoVO)));
-        produtoSendMessage.send(retorno);
+        rabbitMQProdutoSendMessage.send(retorno);
         return retorno;
 
     }

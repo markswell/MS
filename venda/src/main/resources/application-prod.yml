@@ -21,3 +21,7 @@ eureka:
     service-url:
       defaultZone: ${REGISTER_SERVER_URL}
 
+venda:
+  rabbitmq:
+    exchenge: ${RABBITMQ_EXCHENGE}
+    routingkey: ${RABBITMQ_QUEUE}
