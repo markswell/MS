@@ -4,6 +4,7 @@ import com.markswell.venda.converter.VOConverter;
 import com.markswell.venda.domain.ProdutoVO;
 import com.markswell.venda.entity.Produto;
 import com.markswell.venda.repository.ProdutoRepository;
+import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,10 @@ public class ProdutoReceveMessage {
 
     @RabbitListener(queues = {"${venda.rabbitmq.queue}"})
     public void receive(@Payload ProdutoVO produtoVO) {
-        var retorno = produtoRepository.save(voConverter.voParse(produtoVO, Produto.class));
+        try {
+            var retorno = produtoRepository.save(voConverter.voParse(produtoVO, Produto.class));
+        } catch(Exception e) {
+            throw new AmqpRejectAndDontRequeueException(e);
+        }
     }
 }
