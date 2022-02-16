@@ -1,14 +1,15 @@
+jwt:
+  key-store-path: keys/auth.jks
+  secret-key: dW5pdmVyc2FsLWF1dGhvcml6YXRpb24tc2VydmVyLWZpbGUK
+  key-pair-alias: authkey
+
 spring:
   jpa:
     hibernate:
       ddl-auto: create
+
   datasource:
     url: jdbc:postgresql://localhost:5432/auth
     username: admin
     password: admin
-
-security:
-  jwt:
-    token:
-      secret-key: chave_secreta
-      expire-length: 3600
+    initialization-mode: always
