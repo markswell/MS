@@ -11,6 +11,11 @@ spring:
     port: 5672
     username: admin
     password: admin
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:keys/auth-pubkey.txt
 
 eureka:
   instance:

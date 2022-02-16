@@ -1,9 +1,11 @@
 package com.markswell.cadastro.resource;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.PagedModel;
 import com.markswell.cadastro.domain.ProdutoVO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.PageRequest;
 import com.markswell.cadastro.service.ProdutoService;
@@ -19,20 +21,22 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/produto")
 public class ProdutoResource {
 
-    @Autowired
-    private ProdutoService produtoService;
-    @Autowired
-    private PagedResourcesAssembler<ProdutoVO> assembler;
+    private final ProdutoService produtoService;
+    private final PagedResourcesAssembler<ProdutoVO> assembler;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/{id}", produces = "application/json")
     public ProdutoVO find(@PathVariable  Long id) {
         var produtoVO = produtoService.findById(id);
         produtoVO.add(linkTo(getProdutoResource().find(id)).withSelfRel());
         return produtoVO;
     }
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
                                      @RequestParam(value = "limit", defaultValue = "10") int limit,
@@ -44,6 +48,7 @@ public class ProdutoResource {
         return ResponseEntity.ok(pageModel);
     }
 
+    @PreAuthorize("hasAuthority('GERENTE')")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ProdutoVO create(@RequestBody ProdutoVO produtoVO) {
         var retorno = produtoService.create(produtoVO);
@@ -51,6 +56,7 @@ public class ProdutoResource {
         return retorno;
     }
 
+    @PreAuthorize("hasAuthority('GERENTE')")
     @PutMapping(consumes = "application/json", produces = "application/json")
     public ProdutoVO update(@RequestBody ProdutoVO produtoVO) {
         var retorno = produtoService.update(produtoVO);
@@ -58,6 +64,7 @@ public class ProdutoResource {
         return retorno;
     }
 
+    @PreAuthorize("hasAuthority('GERENTE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         produtoService.delete(id);

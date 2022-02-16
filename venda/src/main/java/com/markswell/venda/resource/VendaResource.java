@@ -8,6 +8,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.data.domain.Sort.Direction.ASC;
@@ -27,12 +28,15 @@ public class VendaResource {
     @Autowired
     private PagedResourcesAssembler<VendaVO> assembler;
 
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('VENDEDOR')")
     @GetMapping(value = "/{id}", produces = "application/json")
     public VendaVO find(@PathVariable Long id) {
         var vendaVO = vendaService.findById(id);
         vendaVO.add(linkTo(getProdutoResource().find(id)).withSelfRel());
         return vendaVO;
     }
+
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('VENDEDOR')")
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
                                      @RequestParam(value = "limit", defaultValue = "10") int limit,
@@ -44,6 +48,7 @@ public class VendaResource {
         return ResponseEntity.ok(pageModel);
     }
 
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('VENDEDOR')")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public VendaVO create(@RequestBody VendaVO produtoVO) {
         var retorno = vendaService.create(produtoVO);
@@ -51,6 +56,7 @@ public class VendaResource {
         return retorno;
     }
 
+    @PreAuthorize("hasAuthority('GERENTE')")
     @PutMapping(consumes = "application/json", produces = "application/json")
     public VendaVO update(@RequestBody VendaVO vendaVO) {
         var retorno = vendaService.update(vendaVO);
@@ -58,6 +64,7 @@ public class VendaResource {
         return retorno;
     }
 
+    @PreAuthorize("hasAuthority('GERENTE')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         vendaService.delete(id);

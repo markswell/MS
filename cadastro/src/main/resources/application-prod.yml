@@ -17,6 +17,11 @@ spring:
       producer: ${RABBITMQ_QUEUE}
     dead-letter:
       producer: ${RABBITMQ_DEADLETTER}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:keys/auth-pubkey.txt
 
 eureka:
   instance:

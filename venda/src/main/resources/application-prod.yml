@@ -11,6 +11,11 @@ spring:
     port: ${RABBITMQ_PORT}
     username: ${RABBITMQ_USER}
     password: ${RABBITMQ_PASSWORD}
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            public-key-location: ${KEY_STORE_PATH}
 
 eureka:
   instance:
