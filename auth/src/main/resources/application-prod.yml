@@ -12,3 +12,12 @@ spring:
     url: ${AUTH_DATASOURCE_URL}
     username: ${AUTH_DATASOURCE_USER}
     password: ${AUTH_DATASOURCE_PASSWORD}
+
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVER}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${REGISTER_SERVER_URL}

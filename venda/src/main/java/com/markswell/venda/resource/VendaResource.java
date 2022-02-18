@@ -2,7 +2,9 @@ package com.markswell.venda.resource;
 
 import com.markswell.venda.domain.VendaVO;
 import com.markswell.venda.service.VendaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
@@ -21,12 +23,20 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping("/venda")
+@RequiredArgsConstructor
 public class VendaResource {
 
-    @Autowired
-    private VendaService vendaService;
-    @Autowired
-    private PagedResourcesAssembler<VendaVO> assembler;
+    @Value("${server.port}")
+    private String port;
+
+    private final VendaService vendaService;
+    private final PagedResourcesAssembler<VendaVO> assembler;
+
+    @GetMapping(value = "/port")
+    @PreAuthorize("isAuthenticated()")
+    public String getPort() {
+        return port;
+    }
 
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('VENDEDOR')")
     @GetMapping(value = "/{id}", produces = "application/json")

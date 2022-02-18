@@ -3,21 +3,19 @@ server:
 
 spring:
   application:
-    name: gateway
-
-zuul:
-  prefix: /api
-  ignored-services: "*"
-
-  routes:
-    crud:
-      path: /cadastro/**
-      service-id: cadastro
-      strip-prefix: false
-      custom-sensitive-headers: true
-
-    pagamento:
-      path: /venda/**
-      service-id: venda
-      strip-prefix: false
-      custom-sensitive-headers: true
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: cadastro
+          uri: lb://CADASTRO
+          predicates:
+            - Path=/cadastro/**
+        - id: venda
+          uri: lb://VENDA
+          predicates:
+            - Path=/venda/**
+        - id: auth
+          uri: lb://AUTH
+          predicates:
+            - Path=/auth/**

@@ -1,6 +1,0 @@
-eureka:
-  instance:
-    hostname: ${REGISTER_SERVER_HOST_NAME}
-  client:
-    service-url:
-      defaultZone: ${REGISTER_SERVER_URL}
