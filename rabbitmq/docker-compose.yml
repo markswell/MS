@@ -12,5 +12,6 @@ services:
       - RABBITMQ_ERLANG_COOKIE=secret_pass
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
+    restart: always
 volumes:
   rabbitmq:
